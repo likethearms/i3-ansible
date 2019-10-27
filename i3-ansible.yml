@@ -23,6 +23,15 @@
         name: linux-headers-amd64
         state: build-dep
 
+    - name: Download code
+      get_url:
+        url: https://update.code.visualstudio.com/latest/linux-deb-x64/stable
+        dest: /root/code.deb
+
+    - name: Install code
+      apt:
+        deb: /root/code.deb
+
     - name: Download Chrome
       get_url:
         url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
