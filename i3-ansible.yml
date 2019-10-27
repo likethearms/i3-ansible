@@ -66,3 +66,16 @@
         update_cache: yes
         name: nodejs
       
+    - name: monodb key
+      apt_key:
+        url: https://www.mongodb.org/static/pgp/server-4.2.asc
+        state: present
+        
+    - apt_repository:
+        repo: deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
+        state: present
+
+    - name: install mongodb
+      apt:
+        update_cache: yes
+        name: mongodb-org
