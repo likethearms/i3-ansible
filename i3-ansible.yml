@@ -1,0 +1,29 @@
+- hosts: test
+  remote_user: root
+  tasks:
+    - name: Install packages
+      apt:
+        update_cache: yes
+        name: "{{ packages }}"
+        upgrade: dist
+      vars:
+        packages:
+          - i3
+          - xinit
+          - build-essential
+          - gcc
+          - make
+          - perl
+          - x11-xserver-utils
+          - sudo
+          - terminator
+          - dbus-x11
+
+    - name: Download Chrome
+      get_url:
+        url: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+        dest: /root/google-chrome.deb
+
+    - name: Install Chrome
+      apt:
+        deb: /root/google-chrome.deb
