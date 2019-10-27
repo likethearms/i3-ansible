@@ -79,3 +79,9 @@
       apt:
         update_cache: yes
         name: mongodb-org
+        
+    - name: Start service mongodb
+      service:
+        name: mongod
+        state: started
+        enabled: yes
