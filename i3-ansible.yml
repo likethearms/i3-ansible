@@ -40,3 +40,13 @@
     - name: Install Chrome
       apt:
         deb: /root/google-chrome.deb
+
+    - name: System configs maxuser
+      lineinfile:
+        path: /etc/sysctl.conf
+        line: fs.inotify.max_user_watches=524288
+        
+    - name: System configs swap
+      lineinfile:
+        path: /etc/sysctl.conf
+        line: vm.swappiness=10
