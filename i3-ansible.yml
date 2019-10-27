@@ -54,7 +54,12 @@
         line: vm.swappiness=10
         
     - name: setup nodejs
-      script: curl -sL https://deb.nodesource.com/setup_13.x | bash -
+      get_url: 
+        url: https://deb.nodesource.com/setup_13.x
+        dest: /root/setup-node
+    
+    - name: run nodejs script
+      script: /root/setup-node
     
     - name: install nodejs
       apt:
