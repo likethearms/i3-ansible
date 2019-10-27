@@ -1,11 +1,10 @@
-- hosts: test
-  remote_user: root
+- hosts: 127.0.0.1
+  connection: local
   tasks:
     - name: Install packages
       apt:
         update_cache: yes
         name: "{{ packages }}"
-        upgrade: dist
       vars:
         packages:
           - i3
@@ -18,6 +17,11 @@
           - sudo
           - terminator
           - dbus-x11
+          
+    - name: install headers
+      apt:
+        name: linux-headers-amd64
+        state: build-dep
 
     - name: Download Chrome
       get_url:
