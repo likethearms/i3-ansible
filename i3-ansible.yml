@@ -52,3 +52,12 @@
       lineinfile:
         path: /etc/sysctl.conf
         line: vm.swappiness=10
+        
+    - name: setup nodejs
+      script: curl -sL https://deb.nodesource.com/setup_13.x | bash -
+    
+    - name: install nodejs
+      apt:
+        update_cache: yes
+        name: nodejs
+      
