@@ -17,6 +17,7 @@
           - x11-xserver-utils
           - sudo
           - terminator
+          - curl
           - dbus-x11
           
     - name: install headers
