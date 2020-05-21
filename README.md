@@ -2,14 +2,8 @@
 ```
 su -
 apt install ansible
-```
-## Run
-```
+git clone https://github.com/likethearms/i3-ansible
+cd i3-ansible
 ansible-playbook i3-playbook.yml
-```
-## Install virtual box guest
-```
-sudo mount /dev/cdrom /media/cdrom
-sudo /media/cdrom/VBoxLinuxAdditions.run
-reboot
+adduser <name> sudo
 ```

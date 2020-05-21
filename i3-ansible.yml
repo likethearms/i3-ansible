@@ -19,6 +19,7 @@
           - terminator
           - curl
           - dbus-x11
+          - open-vm-tools-desktop
           
     - name: install headers
       apt:
