@@ -16,14 +16,15 @@
           - perl
           - x11-xserver-utils
           - sudo
+          - dkms
+          - bzip2
           - terminator
           - curl
           - dbus-x11
-          
+
     - name: install headers
       apt:
-        name: linux-headers-amd64
-        state: build-dep
+        name: linux-headers-{{ ansible_kernel }}
 
     - name: Download code
       get_url:
@@ -47,30 +48,30 @@
       lineinfile:
         path: /etc/sysctl.conf
         line: fs.inotify.max_user_watches=524288
-        
+
     - name: System configs swap
       lineinfile:
         path: /etc/sysctl.conf
         line: vm.swappiness=10
-        
+
     - name: setup nodejs
-      get_url: 
+      get_url:
         url: https://deb.nodesource.com/setup_13.x
         dest: /root/setup-node
-    
+
     - name: run nodejs script
       script: /root/setup-node
-    
+
     - name: install nodejs
       apt:
         update_cache: yes
         name: nodejs
-      
+
     - name: monodb key
       apt_key:
         url: https://www.mongodb.org/static/pgp/server-4.2.asc
         state: present
-        
+
     - apt_repository:
         repo: deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
         state: present
@@ -79,9 +80,12 @@
       apt:
         update_cache: yes
         name: mongodb-org
-        
+
     - name: Start service mongodb
       service:
         name: mongod
         state: started
         enabled: yes
+
+    - name: Reboot
+      reboot:
