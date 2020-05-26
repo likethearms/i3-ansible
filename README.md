@@ -1,4 +1,5 @@
-## Prepare
+## Usage
+
 ```
 su -
 apt install ansible
