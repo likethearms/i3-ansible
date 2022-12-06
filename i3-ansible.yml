@@ -56,7 +56,7 @@
         
     - name: setup nodejs
       get_url: 
-        url: https://deb.nodesource.com/setup_14.x
+        url: https://deb.nodesource.com/setup_18.x
         dest: /root/setup-node
     
     - name: run nodejs script
@@ -69,11 +69,11 @@
       
     - name: monodb key
       apt_key:
-        url: https://www.mongodb.org/static/pgp/server-4.2.asc
+        url: https://www.mongodb.org/static/pgp/server-6.0.asc
         state: present
         
     - apt_repository:
-        repo: deb http://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
+        repo: deb http://repo.mongodb.org/apt/debian buster/mongodb-org/6.0 main
         state: present
 
     - name: install mongodb
