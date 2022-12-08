@@ -7,8 +7,29 @@ git clone https://github.com/likethearms/i3-ansible
 cd i3-ansible
 ansible-playbook i3-playbook.yml
 adduser <name> sudo
-reboot
+
+# Setup Hyper-V extensions
+# Install XRDP and XORGXRDP
+git clone https://github.com/Hinara/linux-vm-tools
+cd ubuntu/xx.xx
+chmod +x install.sh
+./install.sh
+
+shutdown
 ```
+
+Windows hyper-v configurations
+```powershell
+# Get host session mode
+Get-VMHost | select Name, EnableEnhancedSessionMode
+
+# Enable if required
+Set-VMHost -EnableEnhancedSessionMode $true
+
+# Turn vm enchanted session on
+Set-VM -VMName <Name-of-VM> -EnhancedSessionTransportType HvSocket
+```
+
 
 ## Configs
 
